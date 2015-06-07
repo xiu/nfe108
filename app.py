@@ -12,6 +12,7 @@ db = SQLAlchemy(app)
 LOGIN="admin"
 PASSWORD="admin"
 
+# Make authentication mandatory
 def check_auth(username, password):
     if username == LOGIN and password == PASSWORD:
         return True
@@ -67,14 +68,10 @@ class Server(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     pool_id = db.Column(db.Integer, db.ForeignKey('pool.id'))
     host = db.Column(db.String(250))
-    sv_login = db.Column(db.String(250))
-    sv_pw = db.Column(db.String(250))
 
-    def __init__(self, pool_id, host, sv_login, sv_pw):
+    def __init__(self, pool_id, host):
         self.pool_id = pool_id
         self.host = host
-        self.sv_login = sv_login
-        self.sv_pw = sv_pw
 
     def list_services(self):
         server = xmlrpclib.Server('http://' + self.host + ':9001/RPC2')
