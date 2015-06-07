@@ -1,7 +1,9 @@
 # Projet NFE108
 
 Pour install les dependences :
+```
 pip install -r requirements.txt
+```
 
 Premierement, executer le bootstrap :
 ```
